@@ -1,5 +1,11 @@
 ## OTI
 [Orthogonal Temporal Interpolation for Zero-Shot Video Recognition](https://arxiv.org/pdf/2308.06897v1.pdf)
+
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/orthogonal-temporal-interpolation-for-zero/zero-shot-action-recognition-on-ucf101)](https://paperswithcode.com/sota/zero-shot-action-recognition-on-ucf101?p=orthogonal-temporal-interpolation-for-zero)
+
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/orthogonal-temporal-interpolation-for-zero/zero-shot-action-recognition-on-hmdb51)](https://paperswithcode.com/sota/zero-shot-action-recognition-on-hmdb51?p=orthogonal-temporal-interpolation-for-zero)
+
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/orthogonal-temporal-interpolation-for-zero/zero-shot-action-recognition-on-kinetics)](https://paperswithcode.com/sota/zero-shot-action-recognition-on-kinetics?p=orthogonal-temporal-interpolation-for-zero)
 ## Citing
 ### BibTeX
 ```bibtex
