@@ -1,0 +1,47 @@
+seed: 1024
+data:
+    dataset: ucf101_few_shot
+    modality: RGB
+    num_segments: 8
+    seg_length: 1
+    batch_size: 2
+    workers: 0
+    num_classes: 101
+    image_tmpl: '{:05d}.jpg'
+    train_root: '/mnt/dolphinfs/hdd_pool/docker/user/hadoop-mtcv/zhuyan29/UCF_101_frame_org'
+    train_list: '/mnt/dolphinfs/hdd_pool/docker/user/hadoop-mtcv/zhuyan29/zsvideo_us/lists/ucf101/few_shot_2.txt' 
+    val_root: '/mnt/dolphinfs/hdd_pool/docker/user/hadoop-mtcv/zhuyan29/UCF_101_frame_org'
+    val_list: '/mnt/dolphinfs/hdd_pool/docker/user/hadoop-mtcv/zhuyan29/import_preimage/data/ucf101_offical_test_1.txt'    
+    label_list: 'lists/ucf101_action_gra.txt'
+    
+    index_bias: 1
+    input_size: 224
+    shot: 2
+    prompt_init: ''
+    num_prompts: 8
+    CSC:  True
+    ctx_pos: end
+network:
+    arch: ViT-B/16  #ViT-B/32 ViT-B/16
+    cwin_arch: 'CSWin_64_12211_tiny_224' #CSWin_96_24322_base_224' #'CSWin_144_24322_large_224'
+    init: True
+    drop_out: 0.0
+    emb_dropout: 0.0
+    type: clip_ucf
+    sim_header: Transf
+solver:
+    type: cosine
+    epochs: 50
+    start_epoch: 0
+    optim: adamw
+    lr: 2.e-5
+    lr_warmup_step: 5
+    weight_decay: 0.2
+    loss_type: CE
+    evaluate: False
+    clip_ratio: 0.1
+    grad_accumulation_steps: 1
+logging:
+    print_freq: 10
+    eval_freq: 101
+    save_freq: 10

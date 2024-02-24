@@ -1,0 +1,30 @@
+seed: 1024
+data:
+    dataset: ucf101
+    modality: RGB
+    num_segments: 8
+    seg_length: 1
+    batch_size: 16
+    workers: 0
+    num_classes: 101
+    image_tmpl: '{:05d}.jpg'
+    val_root: 'ucf101_frame_org'
+    val_list: 'lists/ucf101/ucf101_zero_shot.txt'
+    label_list: 'lists/ucf101/ucf101_labels.txt'
+    index_bias: 1
+    input_size: 224
+    prompt_init: 'a video of a person'
+    num_prompts: 8
+    CSC:  True
+    ctx_pos: end
+network:
+    arch: ViT-B/16 #ViT-B/32 ViT-B/16
+    cwin_arch: 'CSWin_64_12211_tiny_224' #CSWin_96_24322_base_224' #'CSWin_144_24322_large_224'
+    init: True
+    drop_out: 0.0
+    emb_dropout: 0.0
+    type: clip_hmdb
+    sim_header: Transf
+logging:
+    print_freq: 10
+    eval_freq: 1

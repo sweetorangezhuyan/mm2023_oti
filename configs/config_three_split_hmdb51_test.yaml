@@ -1,0 +1,29 @@
+seed: 1024
+data:
+    dataset: hmdb51_offical
+    modality: RGB
+    num_segments: 8
+    seg_length: 1
+    batch_size: 8
+    workers: 0
+    num_classes: 51
+    image_tmpl: '{:05d}.jpg'
+    val_root: 'hmdb51_frame_org'
+    val_list1: 'lists/hmdb51/hmdb51_offical_test_1.txt'
+    label_list1: 'lists/hmdb51/hmdb51_labels.txt'
+    val_list2: 'lists/hmdb51/hmdb51_offical_test_2.txt'
+    label_list2: 'lists/hmdb51/hmdb51_labels.txt'
+    val_list3: 'lists/hmdb51/hmdb51_offical_test_3.txt'
+    label_list3: 'lists/hmdb51/hmdb51_labels.txt'
+    index_bias: 1
+    input_size: 224
+network:
+    arch: ViT-B/32  #ViT-L/14 ViT-B/16
+    init: True
+    drop_out: 0.0
+    emb_dropout: 0.0
+    type: clip_hmdb
+    sim_header: Transf
+logging:
+    print_freq: 10
+    eval_freq: 1

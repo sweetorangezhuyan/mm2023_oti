@@ -1,0 +1,30 @@
+seed: 1024
+data:
+    dataset: k600
+    modality: RGB
+    num_segments: 8
+    seg_length: 1
+    batch_size: 4
+    workers: 0
+    num_classes: 160
+    image_tmpl: '{:05d}.jpg'
+    val_root: 'k600_test_frames'
+    val_list1: 'lists/kinetics_600/k600_split_one.txt'    
+    label_list1: 'lists/kinetics_600/k600_labels_split1.txt'
+    val_list2: 'lists/kinetics_600/k600_split_two.txt'    
+    label_list2: 'lists/kinetics_600/k600_labels_split2.txt'
+    val_list3: 'lists/kinetics_600/k600_split_three.txt'    
+    label_list3: 'llists/kinetics_600/k600_labels_split3.txt'
+    index_bias: 1
+    input_size: 224
+network:
+    arch: ViT-B/16  #ViT-B/32 ViT-B/16
+    cwin_arch: 'CSWin_64_12211_tiny_224' #CSWin_96_24322_base_224' #'CSWin_144_24322_large_224'
+    init: True
+    drop_out: 0.0
+    emb_dropout: 0.0
+    type: clip_hmdb
+    sim_header: Transf
+logging:
+    print_freq: 10
+    eval_freq: 1
