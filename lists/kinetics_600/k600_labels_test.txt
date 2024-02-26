@@ -1,0 +1,217 @@
+0,acting in play
+1,adjusting glasses
+2,alligator wrestling
+3,archaeological excavation
+4,arguing
+5,assembling bicycle
+6,attending conference
+7,backflip (human)
+8,base jumping
+9,bathing dog
+10,battle rope training
+11,blowdrying hair
+12,blowing bubble gum
+13,bodysurfing
+14,bottling
+15,bouncing on bouncy castle
+16,breaking boards
+17,breathing fire
+18,building lego
+19,building sandcastle
+20,bull fighting
+21,bulldozing
+22,burping
+23,calculating
+24,calligraphy
+25,capsizing
+26,card stacking
+27,card throwing
+28,carving ice
+29,casting fishing line
+30,changing gear in car
+31,chewing gum
+32,chiseling stone
+33,chiseling wood
+34,chopping meat
+35,chopping vegetables
+36,clam digging
+37,coloring in
+38,combing hair
+39,contorting
+40,cooking scallops
+41,cosplaying
+42,cracking back
+43,cracking knuckles
+44,crossing eyes
+45,cumbia
+46,curling (sport)
+47,cutting apple
+48,cutting orange
+49,delivering mail
+50,directing traffic
+51,docking boat
+52,doing jigsaw puzzle
+53,drooling
+54,dumpster diving
+55,dyeing eyebrows
+56,embroidering
+57,falling off bike
+58,falling off chair
+59,fencing (sport)
+60,fidgeting
+61,fixing bicycle
+62,flint knapping
+63,fly tying
+64,geocaching
+65,getting a piercing
+66,gold panning
+67,gospel singing in church
+68,hand washing clothes
+69,head stand
+70,historical reenactment
+71,home roasting coffee
+72,huddling
+73,hugging baby
+74,ice swimming
+75,installing carpet
+76,ironing hair
+77,jaywalking
+78,jumping bicycle
+79,jumping jacks
+80,karaoke
+81,land sailing
+82,lawn mower racing
+83,laying concrete
+84,laying stone
+85,laying tiles
+86,leatherworking
+87,licking
+88,lifting hat
+89,lighting fire
+90,lock picking
+91,longboarding
+92,looking at phone
+93,luge
+94,making balloon shapes
+95,making bubbles
+96,making cheese
+97,making paper aeroplanes
+98,marriage proposal
+99,massaging neck
+100,moon walking
+101,mosh pit dancing
+102,mountain climber (exercise)
+103,mushroom foraging
+104,needle felting
+105,opening door
+106,opening refrigerator
+107,opening wine bottle
+108,packing
+109,passing soccer ball
+110,photobombing
+111,photocopying
+112,pinching
+113,pirouetting
+114,planing wood
+115,playing beer pong
+116,playing blackjack
+117,playing darts
+118,playing dominoes
+119,playing field hockey
+120,playing gong
+121,playing hand clapping games
+122,playing laser tag
+123,playing lute
+124,playing maracas
+125,playing marbles
+126,playing netball
+127,playing ocarina
+128,playing pan pipes
+129,playing pinball
+130,playing ping pong
+131,playing polo
+132,playing rubiks cube
+133,playing scrabble
+134,playing with trains
+135,poking bellybutton
+136,polishing metal
+137,popping balloons
+138,pouring beer
+139,preparing salad
+140,pushing wheelbarrow
+141,putting in contact lenses
+142,putting on eyeliner
+143,putting on foundation
+144,putting on lipstick
+145,putting on mascara
+146,putting on sari
+147,putting on shoes
+148,raising eyebrows
+149,repairing puncture
+150,riding snow blower
+151,roasting marshmallows
+152,roasting pig
+153,rolling pastry
+154,rope pushdown
+155,sausage making
+156,sawing wood
+157,scrapbooking
+158,scrubbing face
+159,separating eggs
+160,sewing
+161,shaping bread dough
+162,shining flashlight
+163,shopping
+164,shucking oysters
+165,shuffling feet
+166,sipping cup
+167,skiing mono
+168,skipping stone
+169,sleeping
+170,smashing
+171,smelling feet
+172,smoking pipe
+173,square dancing
+174,standing on hands
+175,staring
+176,steer roping
+177,sucking lolly
+178,swimming front crawl
+179,swinging baseball bat
+180,sword swallowing
+181,tackling
+182,tagging graffiti
+183,talking on cell phone
+184,tasting wine
+185,threading needle
+186,throwing knife
+187,throwing snowballs
+188,throwing tantrum
+189,throwing water balloon
+190,tie dying
+191,tightrope walking
+192,tiptoeing
+193,trimming shrubs
+194,twiddling fingers
+195,tying shoe laces
+196,using a microscope
+197,using a paint roller
+198,using a power drill
+199,using a sledge hammer
+200,using a wrench
+201,using atm
+202,using bagging machine
+203,using circular saw
+204,using inhaler
+205,using puppets
+206,vacuuming floor
+207,visiting the zoo
+208,wading through mud
+209,wading through water
+210,walking through snow
+211,watching tv
+212,waving hand
+213,weaving fabric
+214,winking
+215,wood burning (art)
+216,yarn spinning
