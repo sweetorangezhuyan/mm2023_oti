@@ -243,8 +243,9 @@ def get_orthogonal_num_ration(now_tensor,best_tensor,true_label,cls):
         accuracy=accuracy*100
         accuracies.append(accuracy)
     maxweight=accuracies.index(max(accuracies))/10
+    best_af_otf=best_tensor+gain*maxweight
     accuracies=[round(i,1) for i in accuracies]
-    return max(accuracies),accuracies,maxweight
+    return max(accuracies),accuracies,maxweight,best_af_otf
 
 
 def validate(val_loader, device, model, config, text_features, test_crops, test_clips,save_root):
@@ -353,23 +354,29 @@ def validate(val_loader, device, model, config, text_features, test_crops, test_
 #         print(pre_lab5.shape,la.shape)
         labels=torch.cat((pre_lab5.cpu(),las.cpu()),1)
         save_pickle(labels, vid_feat.cpu(),front_vid_feat.cpu(), text_features.cpu(), save_root)
-        bestaccu,accuracies,maxweight=get_orthogonal_num_ration(vid_feat,front_vid_feat,las,text_features)
+        bestaccu,accuracies,maxweight,best_af_otf=get_orthogonal_num_ration(vid_feat,front_vid_feat,las,text_features)
         print('Best_prec@1 using orthogonal temporal interpolation feature is {}, the weight is {}.\n Prec@1 under different interpolation weights are {}.'.format(bestaccu,maxweight,accuracies))
         
-        acc_split, acc_split_top5 = multi_split_test(vid_feat.cpu(), text_features.cpu(), la.cpu())
-        accuracy_split, accuracy_split_std = np.mean(acc_split), np.std(acc_split)
-        accuracy_split_top5, accuracy_split_top5_std = np.mean(acc_split_top5), np.std(acc_split_top5)
-        
-        front_acc_split, front_acc_split_top5 = multi_split_test(front_vid_feat.cpu(), text_features.cpu(), la.cpu())
-        front_accuracy_split, front_accuracy_split_std = np.mean(front_acc_split), np.std(front_acc_split)
-        front_accuracy_split_top5, front_accuracy_split_top5_std = np.mean(front_acc_split_top5), np.std(front_acc_split_top5)
-        print('-----Half-classes Evaluation after layer-----')
+        best_af_otf_acc_split,best_af_otf_acc_split_top5=multi_split_test(best_af_otf.cpu(), text_features.cpu(), la.cpu())
+        accuracy_split,accuracy_split_std=np.mean(best_af_otf_acc_split), np.std(best_af_otf_acc_split)
+        print('-----Half-classes Evaluation af_otf-----')
         print('Top1: mean {:.03f}%, std {:.03f}%'.format(accuracy_split, accuracy_split_std))
-        print('Top5: mean {:.03f}%, std {:.03f}%'.format(accuracy_split_top5, accuracy_split_top5_std))
         
-        print('-----Half-classes Evaluation before layer-----')
-        print('Top1: mean {:.03f}%, std {:.03f}%'.format(front_accuracy_split, front_accuracy_split_std))
-        print('Top5: mean {:.03f}%, std {:.03f}%'.format(front_accuracy_split_top5, front_accuracy_split_top5_std))
+
+        # acc_split, acc_split_top5 = multi_split_test(vid_feat.cpu(), text_features.cpu(), la.cpu())
+        # accuracy_split, accuracy_split_std = np.mean(acc_split), np.std(acc_split)
+        # accuracy_split_top5, accuracy_split_top5_std = np.mean(acc_split_top5), np.std(acc_split_top5)
+        
+        # front_acc_split, front_acc_split_top5 = multi_split_test(front_vid_feat.cpu(), text_features.cpu(), la.cpu())
+        # front_accuracy_split, front_accuracy_split_std = np.mean(front_acc_split), np.std(front_acc_split)
+        # front_accuracy_split_top5, front_accuracy_split_top5_std = np.mean(front_acc_split_top5), np.std(front_acc_split_top5)
+        # print('-----Half-classes Evaluation after layer-----')
+        # print('Top1: mean {:.03f}%, std {:.03f}%'.format(accuracy_split, accuracy_split_std))
+        # # print('Top5: mean {:.03f}%, std {:.03f}%'.format(accuracy_split_top5, accuracy_split_top5_std))
+        
+        # print('-----Half-classes Evaluation before layer-----')
+        # print('Top1: mean {:.03f}%, std {:.03f}%'.format(front_accuracy_split, front_accuracy_split_std))
+        # print('Top5: mean {:.03f}%, std {:.03f}%'.format(front_accuracy_split_top5, front_accuracy_split_top5_std))
 
     return top1.avg
 

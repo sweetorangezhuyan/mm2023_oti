@@ -99,7 +99,25 @@ def get_cswinmodel_pa(model):
 '''
 主程序
 '''
-
+def get_orthogonal_num_ration(now_tensor,best_tensor,true_label,cls):
+    l2sums=torch.norm(best_tensor,dim=1)**2
+    l2sums=torch.unsqueeze(l2sums,dim=1)
+    maps=(now_tensor*best_tensor)/l2sums
+    maps*=best_tensor 
+    gain=now_tensor-maps
+    accuracies=[]
+    # res_ucf101=[]
+    for i in range(0,11):
+        ratio=i/10
+        af_otf=best_tensor+gain*ratio
+        pres=(af_otf@cls.T).softmax(dim=-1).topk(1).indices
+        accuracy=sum(pres==true_label).numpy()[0]/gain.shape[0]
+        accuracy=accuracy*100
+        accuracies.append(accuracy)
+    maxweight=accuracies.index(max(accuracies))/10
+    best_af_otf=best_tensor+gain*maxweight
+    accuracies=[round(i,1) for i in accuracies]
+    return max(accuracies),accuracies,maxweight,best_af_otf
 
 def main(args):
     init_distributed_mode(args)
@@ -197,6 +215,7 @@ def main(args):
         model_full = DistributedDataParallel(model_full.cuda(), device_ids=[args.gpu], find_unused_parameters=True)
     res_be=torch.zeros((3))
     res_af=torch.zeros((3))
+    res_af_otf=torch.zeros((3))
     ## val data
     val_list=[config.data.val_list1,config.data.val_list2,config.data.val_list3]
     label_list=[config.data.label_list1,config.data.label_list2,config.data.label_list3]
@@ -240,17 +259,19 @@ def main(args):
         预测
         '''
 
-        prec1,front_pre1 = validate(
+        prec1,front_pre1,bestaccu = validate(
             val_loader, device,
             model_full, config, classes_features, args.test_crops, args.test_clips, save_root,i)
         res_af[i-1]=prec1
         res_be[i-1]=front_pre1
+        res_af_otf[i-1]=bestaccu
 
 
         # print(prec1, model_full.module.ratio)
         # return
     print('时序前为{}{}'.format(torch.mean(res_be),torch.std(res_be)))
     print('时序后为{}{}'.format(torch.mean(res_af),torch.std(res_af)))
+    print('正交时序特征为{}{}'.format(torch.mean(res_af_otf),torch.std(res_af_otf)))
 
 def validate(val_loader, device, model, config, text_features, test_crops, test_clips, save_root,now_split):
     top1 = AverageMeter()
@@ -356,6 +377,9 @@ def validate(val_loader, device, model, config, text_features, test_crops, test_
         las = torch.unsqueeze(la, 1)
         #         print(pre_lab5.shape,la.shape)
         labels = torch.cat((pre_lab5.cpu(), las.cpu()), 1)
+        bestaccu,accuracies,maxweight,best_af_otf=get_orthogonal_num_ration(vid_feat,front_vid_feat,las,text_features)
+        print('Best_prec@1 using orthogonal temporal interpolation feature is {}, the weight is {}.\n Prec@1 under different interpolation weights are {}.'.format(bestaccu,maxweight,accuracies))
+        
         save_pickle(labels, vid_feat.cpu(), front_vid_feat.cpu(), text_features.cpu(), save_root,now_split)
 
         '''
@@ -377,7 +401,7 @@ def validate(val_loader, device, model, config, text_features, test_crops, test_
         # print('Top1: mean {:.03f}%, std {:.03f}%'.format(front_accuracy_split, front_accuracy_split_std))
         # print('Top5: mean {:.03f}%, std {:.03f}%'.format(front_accuracy_split_top5, front_accuracy_split_top5_std))
 
-    return top1.avg,front_top1.avg
+    return top1.avg,front_top1.avg,bestaccu
 
 
 # utils
